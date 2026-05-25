@@ -1,0 +1,75 @@
+.taskcardContainer {
+  background-color: #26262b;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #323238;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.taskcardContainer:hover {
+  border-color: #4b4b54;
+}
+
+.taskcardTitle {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.taskcardDescr {
+  font-size: 0.85rem;
+  color: #a8a8b3;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.taskcardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
+}
+
+.taskcardBadge {
+  background-color: #383842;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.taskcardCreatedAt {
+  color: #7c7c8a;
+}
+
+.taskcardControlsBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #323238;
+  padding-top: 8px;
+}
+
+.taskcardDeleteBtn {
+  background: none;
+  border: none;
+  color: #f75a68;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.taskcardDeleteBtn:hover {
+  color: #ff7d8a;
+}
+
+.taskcardArrowsBox {
+  display: flex;
+  gap: 4px;
+}
+
+:global(.taskcard__arrow-btn) {
+  color: #4ea8de !important;
+}

@@ -1,0 +1,12 @@
+.boardContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.boardGrid {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 20px;
+}
