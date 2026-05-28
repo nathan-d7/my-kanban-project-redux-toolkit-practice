@@ -1,0 +1,106 @@
+.taskFormContainer {
+  border: 1px solid red;
+  width: 60%;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 12, 0.75);
+  backdrop-filter: blur(5px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #1a1a1e;
+  border: 1px solid #29292e;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  padding: 18px 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  animation: scaleUp 0.15s ease-out;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.taskFormBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modalHeader h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.taskFormInput,
+.taskFormDescrp,
+.taskFormBottom {
+  min-width: 100%;
+}
+
+.taskFormInput,
+.taskFormDescrp,
+.taskFormSelect {
+  background-color: #26262b;
+  border: 1px solid #323238;
+  border-radius: 8px;
+  color: #e1e1e6;
+  font-family: inherit;
+  padding: 12px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.taskFormInput:focus,
+.taskFormDescrp:focus,
+.taskFormSelect:focus {
+  border-color: #4ea8de;
+  box-shadow: 0 0 0 2px rgba(78, 168, 222, 0.2);
+}
+  
+.taskFormDescrp {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a8a8b3;
+  font-size: 0.9rem;
+}
+
+.taskFormSelect {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.taskFormBottom {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

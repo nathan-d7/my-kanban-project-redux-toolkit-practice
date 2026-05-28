@@ -1,6 +1,10 @@
 .boardContainer {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .boardGrid {
@@ -10,3 +14,11 @@
   justify-content: center;
   margin-top: 20px;
 }
+
+:global(.board__boardAddTaskBtn) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+

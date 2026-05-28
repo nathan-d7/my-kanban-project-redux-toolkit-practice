@@ -2,10 +2,15 @@ import { type FC, useState } from "react"
 import style from "./TaskForm.module.css"
 import { IconButton } from "@mui/material"
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import { useAppDispatch } from "../../app/hooks"
 import { addTask } from "../../features/board/boardSlice"
 
-const TaskForm: FC = () => {
+type TaskFormProps = {
+  onClose: () => void
+}
+
+const TaskForm: FC<TaskFormProps> = ({onClose}) => {
 
   const [formData, setFormData] = useState({
     title: '',
@@ -29,7 +34,7 @@ const TaskForm: FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(addTask(
       {
@@ -38,47 +43,84 @@ const TaskForm: FC = () => {
         status: 'todo',
         createdAt: new Date().toLocaleDateString('en-US', options)
     }))
+    onClose()
   }
 
   return (
     <div className={style.taskFormContainer}>
-     <form 
-      className={style.taskFormBox}
-      onSubmit={handleSubmit}
-    >
-      <input 
-        className={style.taskFormInput} 
-        type='text' 
-        placeholder="Заголовок задачи"
-        name='title'
-        value={formData.title}
-        onChange={handleChange}
-      />
-      <textarea 
-        className={style.taskFormDescrp} 
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-      >
-      </textarea>
+      <div className={style.modalOverlay} onClick={onClose}>
 
-      <div className={style.taskFormBottom}>
-        <select 
-          name="priority"
-          value={formData.priority}
-          onChange={handleChange}
-        >
-          <option id="low">low</option>
-          <option id="medium">medium</option>
-          <option id="high">high</option>
-        </select>
+        <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
 
-        <IconButton type='submit'>
-          <ControlPointIcon color="info" />
-        </IconButton>
+          <div className={style.modalHeader}>
+            <h3>Create New Task</h3>
+            <IconButton type="button" 
+              className={style.closeBtn} 
+              onClick={onClose}
+              sx={{
+                padding: '0'
+              }}
+            >
+              <CancelRoundedIcon 
+                sx={{
+                  fill: '#ea2c2c',
+                  path: '#fff'
+                }}
+              />
+            </IconButton>
+          </div>
+
+          <form 
+            className={style.taskFormBox}
+            onSubmit={handleSubmit}
+          >
+            <input 
+              className={style.taskFormInput} 
+              type='text' 
+              placeholder="Task title..."
+              name='title'
+              value={formData.title}
+              onChange={handleChange}
+            />
+            <textarea 
+              className={style.taskFormDescrp} 
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Add description..."
+            >
+            </textarea>
+
+            <div className={style.taskFormBottom}>
+              <div className={style.selectWrapper}>
+                <label htmlFor="priority">Priority: </label>
+                <select 
+                  name="priority"
+                  value={formData.priority}
+                  onChange={handleChange}
+                  className={style.taskFormSelect}
+                >
+                  <option id="low">Low</option>
+                  <option id="medium">Medium</option>
+                  <option id="high">High</option>
+                </select>
+              </div>
+              <IconButton 
+                type='submit'
+                sx={{
+                  '&.MuiIconButton-root': {
+                    padding: 0
+                  }
+                }}
+              >
+                <ControlPointIcon sx={{ fontSize: '1.8rem', color: '#4ea8de' }} />
+              </IconButton>
+            </div>
+
+          </form>
+        </div>
+
       </div>
-      
-     </form>
     </div>
   )
 }
