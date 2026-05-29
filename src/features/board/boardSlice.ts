@@ -53,9 +53,12 @@ export const boardSlice = createSlice({
       if(task) {
         task.status = action.payload.newStatus
       }
+    },
+    setSearchQuery(state, action: PayloadAction<string>) {
+      state.searchQuery = action.payload
     }
   }
 })
 
-export const {addTask, deleteTasks, moveTask} = boardSlice.actions
+export const {addTask, deleteTasks, moveTask, setSearchQuery} = boardSlice.actions
 export default boardSlice.reducer
